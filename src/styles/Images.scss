@@ -1,0 +1,38 @@
+.images {
+   padding: 0 20px;
+
+   &__row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+   }
+
+   & .group {
+      padding: 0 20px 20px 20px;
+      border: 1px solid #000;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      &:last-child {
+         margin-bottom: 0;
+      }
+   }
+
+   & .image {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      height: 400px;
+      background-color: #eaeaea;
+      border: 1px solid #bebebe;
+      cursor: pointer;
+      &:hover {
+         border: 1px solid #868686;
+      }
+
+      & img {
+         width: 100%;
+         object-fit: contain;
+      }
+   }
+}

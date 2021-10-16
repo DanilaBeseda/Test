@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Header } from "./components/Header";
+import { Images } from "./components/Images";
+import { AppContext } from "./context/AppContext";
 
-function App() {
+const App: React.FC = () => {
+  const [images, setImages] = useState<Array<string[]>>([])
+  const [isGroup, setIsGroup] = useState<boolean>(false)
+  const [inputValue, setInputValue] = useState('')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <AppContext.Provider value={{ images, setImages, isGroup, setIsGroup, inputValue, setInputValue }}>
+      <Header />
+      <Images />
+    </AppContext.Provider>
+  )
 }
 
 export default App;
