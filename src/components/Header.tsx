@@ -39,6 +39,11 @@ export const Header: React.FC = () => {
             image[0].length <= 10 && tags.push(image[0])
          })
 
+         if (!tags[0]) {
+            alert('delay будет работать только в том случае, если существует хотя бы 1 gif с тегом <= 10 символам')
+            return
+         }
+
          timer.current = setInterval(async () => {
             const randomTag: string = tags[Math.floor(Math.random() * tags.length)]
 
