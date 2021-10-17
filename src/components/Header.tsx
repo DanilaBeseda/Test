@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
             } else {
                alert(`По тегу "${tag}" ничего не найдено`)
             }
-         } catch (e) {
+         } catch (e: any) {
             alert('Произошла http ошибка')
          }
       }
@@ -60,8 +60,9 @@ export const Header: React.FC = () => {
 
 
    function inputHandler(e: ChangeEvent<HTMLInputElement>): void {
-      if (e.target.value.startsWith(',')) return
-      setInputValue(e.target.value.replace(/[^A-Za-z,]/ig, ''))
+      const text: string = e.target.value
+      if (text.startsWith(',') || text.endsWith(',,')) return
+      setInputValue(text.replace(/[^A-Za-z,]/ig, ''))
    }
 
    async function loadBtnHandler(): Promise<void> {
@@ -69,7 +70,6 @@ export const Header: React.FC = () => {
          alert('Заполните поле тег')
          return
       }
-
       let tags: string[] = inputValue.replaceAll(',', ' ').trim().split(' ')
 
       setLoading(true)
@@ -77,7 +77,7 @@ export const Header: React.FC = () => {
       const hrefs: string = await fetchData(tags)
 
       if (hrefs && tags.length === hrefs.split(',').length) {
-         setImages(prev => [...prev, [inputValue, hrefs]])
+         setImages(prev => [...prev, [tags.join(','), hrefs]])
       }
 
       setLoading(false)
