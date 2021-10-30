@@ -70,7 +70,8 @@ export const Header: React.FC = () => {
          alert('Заполните поле тег')
          return
       }
-      let tags: string[] = inputValue.replaceAll(',', ' ').trim().split(' ')
+
+      let tags: string[] = inputValue.replace(/,$/gm, '').split(' ')
 
       setLoading(true)
 
